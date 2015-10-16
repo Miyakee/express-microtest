@@ -3,7 +3,7 @@
  */
 var mysql = require('mysql');
 var con=require('./db.js');
-var TEST_DATABASE = 'microtest3';
+var TEST_DATABASE = 'miyakee';
 function Table(tableName){
     this.tableName=tableName;
     //this.way=way;
@@ -32,13 +32,33 @@ Table.prototype.select=function(username,password,callback){
 
 
 };
-Table.prototype.add=function(obj,callback){
+Table.prototype.add=function(callback){
   this.client.query(
-      "SELECT count(*) as count FROM " + this.tableName +" WHERE username= "+username+" AND  password = "+password,
+      "SHOW FIELDS FROM users",
        function(err,results){
-
+           if (err) {
+               callback(err,results)
+           }
+           else{
+               callback(null,results)
+           }
 }
-  );
+  );this.client.end();
+
+};
+
+Table.prototype.all=function(callback){
+    this.client.query(
+        "SELECT * FROM "+ this.tableName,
+        function(err,results){
+            if (err) {
+                callback(err,results)
+            }
+            else{
+                callback(null,results)
+            }
+        }
+    );this.client.end();
 
 };
 exports.Interface=function(name){
