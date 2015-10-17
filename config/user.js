@@ -13,7 +13,16 @@ function Table(tableName){
     this.client.query("use " + TEST_DATABASE);
 
 }
+Table.prototype.delete=function(id,callback){
+    this.client.query("DELETE FORM "+this.tableName+"where id ="+id,function(err,results,fileds){
+        if(err){
+            callback(err,results);
+        }else{
+            callback(null,results)
+        }
 
+    })
+}
 Table.prototype.select=function(username,password,callback){
     //var TEST_TABLE = 'users';
 

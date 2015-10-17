@@ -42,6 +42,16 @@ router.post('/login', function(req, res, next) {
   });
 
 });
+router.get('/article/delete/:id',function(req,res,next){
+  var id=req.pramas.id;
+  Article.delete(id,function(err,result){
+    if(err){
+      res.send("1");
+    }else{
+      res.redirect("/article");
+    }
+  })
+});
 
 
 router.get('/addArticle',function(req, res, next){
