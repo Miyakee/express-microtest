@@ -43,10 +43,10 @@ router.post('/login', function(req, res, next) {
 
 });
 router.get('/article/delete/:id',function(req,res,next){
-  var id=req.pramas.id;
+  var id=req.params.id;
   Article.delete(id,function(err,result){
     if(err){
-      res.send("1");
+      res.send(err);
     }else{
       res.redirect("/article");
     }
@@ -58,7 +58,7 @@ router.get('/addArticle',function(req, res, next){
   res.send("1");
 User.add(function(err,res){
   if(err){
-    res.send('3');
+    res.send(err);
   }else{
     res.send('200');
   }
