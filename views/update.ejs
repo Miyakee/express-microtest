@@ -2,9 +2,11 @@
 <html>
 <head>
     <title>后台登陆系统</title>
-    <link rel="stylesheet" href="stylesheets/bootstrap.css">
-    <link rel="stylesheet" href="stylesheets/bootstrap-theme.css">
-    <script type="text/javascript" src="ckeditor/ckeditor.js"></script>
+    <!--<%- include header.ejs %>-->
+
+    <link rel="stylesheet" href="../../../stylesheets/bootstrap.css">
+    <link rel="stylesheet" href="../../../stylesheets/bootstrap-theme.css">
+    <script type="text/javascript" src="../../../ckeditor/ckeditor.js"></script>
     <style type="text/css">
 div.main{
     width:85%;
@@ -35,8 +37,8 @@ div.panel.panel-default table.table.table-striped td.use {
 }
     </style>
 </head>
-<script src="javascripts/jquery.js"></script>
-<script src="javascripts/bootstrap.js"></script>
+<script src="../../../javascripts/jquery.js"></script>
+<script src="../../../javascripts/bootstrap.js"></script>
 
 <body>
 
@@ -59,8 +61,8 @@ div.panel.panel-default table.table.table-striped td.use {
 </ul></div>
 <div class="main">
     <ul class="nav nav-tabs">
-        <li role="presentation" class="active"><a href="#">All article</a></li>
-        <li role="presentation"><a href="#">Create New</a></li>
+        <li role="presentation" ><a href="/article">All article</a></li>
+        <li role="presentation" class="active"><a href="#">Create New</a></li>
         <li role="presentation"><a href="#">Have deleted</a></li>
     </ul>
 <div class="panel panel-default ">
@@ -70,19 +72,19 @@ div.panel.panel-default table.table.table-striped td.use {
 
         <form class="form-inline" method="post">
             <div class="form-group">
-                <label class="sr-only" for="exampleInputEmail3">Email address</label>
-                <input class="form-control" name="theme" id="" placeholder="Title">
+                <label class="sr-only" for="exampleInputEmail3">Title</label>
+                <input class="form-control" name="theme" id=""  value="<%= message.theme%>">
             </div>
             <!--<div class="form-group">-->
                 <!--<label class="sr-only" for="exampleInputPassword3">Password</label>-->
                 <!--<input type="password" class="form-control" id="exampleInputPassword3" placeholder="Password">-->
             <!--</div>-->
             <div class="form-group">
-                <select class="form-control" name="category_id">
-                    <option value="1">Article</option>
-                    <option value="2">Life</option>
-                    <option value="3">Picture</option>
-                    <option value="4">Other</option>
+                <select class="form-control" name="category_id"  >
+                    <option value="1" <%= a %> >Article</option>
+                    <option value="2" <%= b %> >Life</option>
+                    <option value="3" <%= c %> >Picture</option>
+                    <option value="4" <%= d %> >Other</option>
                 </select>
 
   </div>
@@ -93,12 +95,11 @@ div.panel.panel-default table.table.table-striped td.use {
 
             <!--</div>-->
 
-            <textarea rows="30" cols=100" name="editor01"></textarea>
+            <textarea rows="30" cols=100" name="editor01"><%= message.content%></textarea>
             <script type="text/javascript">CKEDITOR.replace('editor01');</script>
 
             <p><button type="submit" class="btn btn-default">Sign in</button></p>
         </form>
-
 
 
 

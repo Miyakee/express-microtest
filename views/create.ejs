@@ -2,8 +2,11 @@
 <html>
 <head>
     <title>后台登陆系统</title>
+    <!--<%- include header.ejs %>-->
+
     <link rel="stylesheet" href="stylesheets/bootstrap.css">
     <link rel="stylesheet" href="stylesheets/bootstrap-theme.css">
+    <script type="text/javascript" src="ckeditor/ckeditor.js"></script>
     <style type="text/css">
 div.main{
     width:85%;
@@ -58,24 +61,52 @@ div.panel.panel-default table.table.table-striped td.use {
 </ul></div>
 <div class="main">
     <ul class="nav nav-tabs">
-        <li role="presentation" class="active"><a href="#">All article</a></li>
-        <li role="presentation"><a href="/create">Create New</a></li>
+        <li role="presentation" ><a href="/article">All article</a></li>
+        <li role="presentation" class="active"><a href="">Create New</a></li>
         <li role="presentation"><a href="#">Have deleted</a></li>
     </ul>
-<div class="panel panel-default">
+<div class="panel panel-default ">
     <!-- Default panel conte   nts -->
     <div class="panel-heading">主人发表的文章</div>
     <div class="panel-body">
-        <p>加油发文</p>
-    </div>
-<table class="table table-striped">
-<th>id</th><th>标题</th><th>分类</th><th>内容</th><th>阅读量</th><th>点赞</th><th>修改日期</th><th>创建日期</th><th>删除</th><th> 修改</th>
-    <% all.forEach(function(item){ %>
-<tr><td><%= item.id %></td><td><%= item.theme %></td><td><%= item.category_id %></td><td class="overword"><%= item.content %></td><td><%= item.click %></td><td><%= item.goods %></td><td><%= item.created_at %></td><td><%= item.updated_at %></td><td class="use"><a href="/article/update/<%= item.id %>">修改</a></td><td><a href="/article/delete/<%= item.id %>"> 删除</a></td></tr>
-    <!--<tr><td>123</td><td>123</td><td>123</td><td>123</td><td>123</td><td>123</td><td>232</td><td>123</td><td>修改 删除</td></tr>-->
-    <% }) %>
 
-</table>
+        <form class="form-inline" method="post">
+            <div class="form-group">
+                <label class="sr-only" for="exampleInputEmail3">Email address</label>
+                <input class="form-control" name="theme" id="" placeholder="Title">
+            </div>
+            <!--<div class="form-group">-->
+                <!--<label class="sr-only" for="exampleInputPassword3">Password</label>-->
+                <!--<input type="password" class="form-control" id="exampleInputPassword3" placeholder="Password">-->
+            <!--</div>-->
+            <div class="form-group">
+                <select class="form-control" name="category_id">
+                    <option value="1">Article</option>
+                    <option value="2">Life</option>
+                    <option value="3">Picture</option>
+                    <option value="4">Other</option>
+                </select>
+
+  </div>
+            <!--<div class="form-group">-->
+
+            <!--</div>-->
+            <!--<div class="form-group">-->
+
+            <!--</div>-->
+
+            <textarea rows="30" cols=100" name="editor01"></textarea>
+            <script type="text/javascript">CKEDITOR.replace('editor01');</script>
+
+            <p><button type="submit" class="btn btn-default">Sign in</button></p>
+        </form>
+
+
+
+
+
+    </div>
+
     </div>
 </body>
 </html>

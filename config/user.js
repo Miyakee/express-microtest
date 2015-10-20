@@ -44,9 +44,9 @@ Table.prototype.select=function(username,password,callback){
 
 };
 Table.prototype.find=function(obj,callback){
-    var that=this.client;
+    var that=this;
   this.client.query(
-      "SHOW FIELDS FROM articles",
+      "SHOW FIELDS FROM "+ this.tableName,
        function(err,results){
            if (err) {
                callback(err,results)
@@ -68,13 +68,12 @@ Table.prototype.find=function(obj,callback){
                    sql += item.Field + ',';
 
                });
-               now   =   now.replace(/\n/g,"");
+               //now   =   now.replace(/\n/g,"");
 
                sql=sql.substring(0,sql.length-1);
                now=now.substring(0,now.length-1);
-               //var all;
-               var all="INSERT INTO `articles` ( "+sql+" ) VALUES ("+now+")";
-               //all= all.replace(/</g, "?");
+               var all="INSERT INTO "+that.tableName+" ( "+sql+" ) VALUES ("+now+")";
+
                callback(err,all);
            }
         }
@@ -95,6 +94,21 @@ Table.prototype.add=function(message,callback){
 Table.prototype.all=function(callback){
     this.client.query(
         "SELECT * FROM "+ this.tableName,
+        function(err,results){
+            if (err) {
+                callback(err,results)
+            }
+            else{
+                callback(null,results)
+            }
+        }
+    );
+    //this.client.end();
+
+};
+Table.prototype.want=function(id,callback){
+    this.client.query(
+        "SELECT * FROM "+this.tableName+" where id = "+id+" limit 1;",
         function(err,results){
             if (err) {
                 callback(err,results)
