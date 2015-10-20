@@ -84,11 +84,11 @@ router.get('/create',function(req,res,next){
 router.post('/create',function(req,res,next){
   var obj=new Object();
 
-  obj.theme=req.body.theme;
+  obj.theme="'"+req.body.theme+"'";
    obj.category_id=req.body.category_id;
-  var t="";
-  t=req.body.editor01;
-  obj.content="'"+t+"'";
+  //var t="";
+  obj.content="'"+req.body.editor01+"'";
+  //obj.content="'"+t+"'";
   obj.goods=0;
   obj.bads=0;
   obj.click=0;
