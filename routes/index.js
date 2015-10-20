@@ -62,7 +62,7 @@ router.post('/update',function(req,res,next){
   var obj=new Object();
    obj.theme=req.body.theme;
    obj.category_id=req.body.category_id;
-  obj.content=text(req.body.editor01);
+  obj.content="'"+req.body.editor01+"'";
   obj.goods=0;
   obj.bads=0;
   obj.click=0;
@@ -70,6 +70,7 @@ router.post('/update',function(req,res,next){
   //obj.updated_at=new Date().toLocaleDateString()+" "+new Date().toLocaleTimeString();
   //obj.id=20;
 //var  a="";
+
 var  a=Date.parse(new Date());
 obj.created_at=a/1000;
   obj.updated_at=a/1000;

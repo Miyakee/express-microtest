@@ -73,7 +73,8 @@ Table.prototype.find=function(obj,callback){
                sql=sql.substring(0,sql.length-1);
                now=now.substring(0,now.length-1);
                //var all;
-               var all="INSERT INTO `articles` ("+sql+") VALUES ("+now+")";
+               var all="INSERT INTO `articles` ( "+sql+" ) VALUES ("+now+")";
+               //all= all.replace(/</g, "?");
                callback(err,all);
            }
         }
