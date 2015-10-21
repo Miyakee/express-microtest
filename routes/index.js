@@ -53,6 +53,7 @@ router.get('/article/delete/:id',function(req,res,next){
     }
   })
 });
+
 router.get('/article/update/:id',function(req,res,next){
   var id=req.params.id;
   //res.send("od");
@@ -75,6 +76,26 @@ switch (m){
       res.render('update',{message:result[0],a:a,b:b,c:c,d:d});
     }
   })
+});
+router.post('/article/change',function(req,res,next){
+  var obj=new Object();
+  var id=req.params.id;
+  obj.theme="'"+req.body.theme+"'";
+  obj.category_id=req.body.category_id;
+  //var t="";
+  obj.content="'"+req.body.editor01+"'";
+  var  a=Date.parse(new Date());
+  obj.updated_at=a/1000;
+Article.update(id,obj,function(err,result){
+  if(err){
+    res.send(result);
+  }else{
+    res.redirect("/article");
+
+  }
+});
+  //res.send("dd");
+
 });
 router.get('/create',function(req,res,next){
   //var id=req.params.id;

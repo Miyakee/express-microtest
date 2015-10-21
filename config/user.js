@@ -106,6 +106,24 @@ Table.prototype.all=function(callback){
     //this.client.end();
 
 };
+Table.prototype.update= function (id,obj,callback) {
+    var num="";
+    var sql="";
+  for(var i in obj){
+      sql+=i+"="+obj[i]+",";
+  }
+    sql=sql.substring(0,sql.length-1);
+    sql="UPDATE "+this.tableName+" set "+sql+" where id=36";
+    console.log(sql);
+    this.client.query(sql,function(err,res){
+        if(err){
+            callback(err,sql);
+        }else{
+            callback(null,sql);
+        }
+    });
+
+};
 Table.prototype.want=function(id,callback){
     this.client.query(
         "SELECT * FROM "+this.tableName+" where id = "+id+" limit 1;",
