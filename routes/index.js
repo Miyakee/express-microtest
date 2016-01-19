@@ -73,13 +73,15 @@ switch (m){
         break;
   case 4:d="selected";
 }
-      res.render('update',{message:result[0],a:a,b:b,c:c,d:d});
+      res.render('update',{message:result[0],a:a,b:b,c:c,d:d,number:id });
     }
   })
 });
 router.post('/article/change',function(req,res,next){
   var obj=new Object();
-  var id=req.params.id;
+  var id="'"+req.body.id+"'";
+  console.log(id);
+  //var id="41";
   obj.theme="'"+req.body.theme+"'";
   obj.category_id=req.body.category_id;
   //var t="";

@@ -113,8 +113,8 @@ Table.prototype.update= function (id,obj,callback) {
       sql+=i+"="+obj[i]+",";
   }
     sql=sql.substring(0,sql.length-1);
-    sql="UPDATE "+this.tableName+" set "+sql+" where id=36";
-    console.log(sql);
+    sql="UPDATE "+this.tableName+" set "+sql+" where id= "+id;
+    console.log(id);
     this.client.query(sql,function(err,res){
         if(err){
             callback(err,sql);
